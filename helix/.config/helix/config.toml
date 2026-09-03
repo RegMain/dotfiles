@@ -1,0 +1,27 @@
+theme = "catppuccin_mocha"
+
+[editor]
+cursorline = true
+
+indent-guides.render = true
+indent-guides.character = "|"
+
+line-number = "absolute"
+auto-pairs = true
+
+file-picker.hidden = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding"]
+separator = "|"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true 

@@ -1,0 +1,92 @@
+В данном случае основной диск отформатирован под btrfs
+
+sudo mkdir /mnt/btrfs-root
+lsblk (для просмотра дисков)
+sudo mount <основной диск> /mnt/btrfs-root -t btrfs
+sudo btrfs subvolume create /mnt/btrfs-root/@alpine
+
+cd /tmp
+wget https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-minirootfs-3.24.1-x86_64.tar.gz
+sudo tar -xvf alpine-minirootfs-3.24.1-x86_64.tar.gz -C /mnt/btrfs-root/@alpine
+
+sudo cp /etc/resolv.conf /mnt/btrfs-root/@alpine/etc/resolv.conf
+
+sudo mount --bind /dev /mnt/btrfs-root/@alpine/dev
+sudo mount --bind /sys /mnt/btrfs-root/@alpine/sys
+sudo mount --bind /proc /mnt/btrfs-root/@alpine/proc
+
+sudo chroot /mnt/btrfs-root/@alpine /bin/sh
+
+По умолчанию там только vi (чуть позже о том, как поправить)
+
+vi /etc/apk/repositories
+
+Если закомментированы строчки или их нет, то что-то типа:
+
+http://dl-cdn.alpinelinux.org/alpine/v3.24/main
+http://dl-cdn.alpinelinux.org/alpine/v3.24/community
+
+apk update
+
+Если выдаёт ошибку - переменная PATH забаговала (хотя скорее всего это не баг, а фича)
+vi ~/.ashrc
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export TERM=xterm (Alpine не любит foot)
+
+apk add alpine-base linux-lts btrfs-progs linux-firmware-none nano coreutils iwd dosfstools pciutils usbutils
+
+С этого момента у нас будет nano! Как альтернатива - micro
+
+apk del linux-firmware (так система займёт в 3 раза меньше памяти) (лучше потом поставить ещё linux-firmware-intel или чет ещё)
+
+nano /etc/mkinitfs/mkinitfs.conf
+
+Добавляем в конец features btrfs (получаем features=" ... btrfs")
+НЕ ЗАБЫТЬ ПРО ШИФРОВАНИЕ ЕСЛИ ЕСТЬ
+
+mkinitfs $(ls /lib/modules)
+
+Если без ошибок - ура. Нет? Грустно
+
+passwd (не забываем пароль!)
+
+nano /etc/fstab
+
+Удаляем всё, добавляем:
+UUID=<UUID диска>  /  btrfs  rw,relatime,subvol=@alpine  0  1
+
+UUID можно посмотреть в blkid или в аналогичном /etc/fstab в основной системе
+
+exit
+
+sudo umount /mnt/btrfs-root/@alpine/dev
+sudo umount /mnt/btrfs-root/@alpine/sys
+sudo umount /mnt/btrfs-root/@alpine/proc
+
+sudo cp /mnt/btrfs-root/@alpine/boot/vmlinuz-lts /boot/vmlinuz-alpine
+sudo cp /mnt/btrfs-root/@alpine/boot/initramfs-lts /boot/initramfs-alpine
+
+sudo nano /boot/loader/entries/alpine.conf
+
+Пишем (можно стырить из обычных .conf диска. В данном случае рассматривается systemd-boot,
+для других загрузчиков смотрите сами. Насколько я помню, это несложно делается. В общем
+добавляем в загрузчик систему)
+
+title Alpine Linux (Rescue)
+linux /vmlinuz-alpine
+initrd /initramfs-alpine
+options root=<UUID диска> rootflags=subvol=@alpine rw quiet rootfstype=btrfs
+
+Сохраняем
+
+sudo umount /mnt/btrfs-root
+
+Вроде всё
+
+Далее рекомендую закинуть туда arch-rescue и arch-chroot (его нужно подредачить)
+
+Можно ещё запихнуть Alpine напрямую в UEF:
+
+sudo efibootmgr --create --disk <диск> --part <номер раздела> --label "Alpine Linux (Rescue)" \
+--loader '\vmlinuz-alpine' \
+--unicode 'root=UUID=<UUID диска> rw rootfstype=btrfs rootflags=subvol=@alpine initrd=\initramfs-alpine modules=loop,squashfs,sd-mod,btrfs quiet'

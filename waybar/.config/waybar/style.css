@@ -1,0 +1,78 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(22, 22, 22, 1);
+}
+
+#workspaces button {
+    padding: 0 10px;
+    background-color: transparent;
+    color: #ffffff;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.active {
+    background-color: rgba(22, 22, 22, 1);
+    border-bottom: 3px solid #6d73ca;
+}
+
+#workspaces button:hover {
+    background: rgba(45, 45, 45, 1);
+}
+
+#submap {
+    color: #ffffff;
+    margin-left: -10px;
+}
+
+#power-profiles-daemon {
+    margin-left: -2px;
+}
+
+
+#clock,
+#cpu,
+#pulseaudio,
+#memory,
+#language,
+#battery,
+#keyboard-state,
+#network,
+#bluetooth,
+#power-profiles-daemon {
+    color: #ffffff;
+}
+
+/* Выкатной блок трея */
+#group-tray-drawer {
+    background-color: rgba(30, 30, 46, 0.85);
+    border-radius: 8px;
+    padding: 0 4px;
+    margin: 3px 0px;
+}
+
+/* Кнопка стрелочки */
+#custom-tray-toggle {
+    color: #cdd6f4;
+    padding: 0 4px;
+}
+
+#custom-tray-toggle:hover {
+    color: #89b4fa;
+}
+
+/* Иконки внутри трея */
+#tray {
+    padding: 0 4px;
+}
+
+#clock {
+    padding-right: 10px;
+}
+

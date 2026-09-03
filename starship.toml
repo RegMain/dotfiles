@@ -1,0 +1,13 @@
+format = """$directory$cmd_duration\n$username$character"""
+
+[username]
+style_user = 'white bold'
+style_root = 'red bold'
+# Change
+format = '[alcp@](bold white)[$user]($style)'
+disabled = false
+show_always = true
+
+[cmd_duration]
+min_time = 1
+show_milliseconds = true

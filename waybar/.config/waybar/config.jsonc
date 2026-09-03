@@ -1,0 +1,118 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 10,
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+    "modules-center":[],
+    "modules-right": ["group/tray-drawer", "network", "bluetooth", "battery", "power-profiles-daemon", "hyprland/language", "pulseaudio", "clock"],
+
+    "hyprland/workspaces": {
+        "tooltip": false,
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+       	"on-click": "hyprctl dispatch workspace {name}",
+        "workspace-taskbar.enable": true,
+        "format": "{name}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": []
+        }
+    },
+    "hyprland/language": {
+        "format": "| key: {}",
+        "format-en": "EN",
+        "format-ru": "RU",
+        "tooltip": true,
+        "tooltip-format": "Current layout: {}"
+    },
+    "hyprland/submap": {
+        "format": "| mode: {}",
+    },
+    "clock": {
+        "format": "| {:%Y-%m-%d %H:%M}",
+        "tooltip": false,
+        "on-click": "gsimplecal"
+    },
+    "cpu": {
+        "format": "cpu: {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "ram: {}%"
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "🔌  {ipaddr}",
+        "format-disconnected": "⚠  offline",
+        "on-click": "alacritty --class nmtui_floating -e nmtui"
+    },
+    "bluetooth": {
+        "format-disabled": "",
+        "format-connected": " ({num_connections})",
+        "tooltip-format": "{device_alias}",
+        "tooltip-format-connected": " {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "blueman-manager"  
+        
+    },
+    "pulseaudio": {
+        "format": "vol: {volume}%",
+        "on-click": "pavucontrol"
+    },
+    "battery": {
+        "bat": "LBAT",
+        "interval": 60,
+        "format": "| bat: {capacity}%",
+        "format-charging":"| bat: {capacity}%+"
+    },
+    "keyboard-state": {
+        "capslock": true,
+        "numlock": false,
+        "format": "{icon}",
+        "format-icons": {
+            "locked": "CAPS",
+            "unlocked": ""
+        }
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8,
+        "show-passive-items": true
+    },
+    "group/tray-drawer": {
+        "orientation": "horizontal",
+        "drawer": {
+          "transition-duration": 300,
+          "children-class": "tray-hidden",
+          "transition-left-to-right": false, // Распахиваться влево
+          "click-to-reveal": true             // Открывать строго по КЛИКУ
+        },
+        "modules": [
+          "custom/tray-toggle", // Кнопка со стрелочкой (видна всегда)
+          "tray"                 // Сам трей (выезжает при клике)
+        ]
+     },
+    
+     "custom/tray-toggle": {
+     	"format": " ◀ ",
+     	"tooltip": false
+     },
+    "tray": {
+     	"icon-size": 18,
+     	"spacing": 8,
+     	"show-passive-items": true
+     },
+ 	 "power-profiles-daemon": {
+        "format": "({icon})",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "performance": "P",
+            "balanced": "B",
+            "power-saver": "E"
+        }
+    }
+}
