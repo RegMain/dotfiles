@@ -66,6 +66,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("nm-applet --indicator")
     hl.exec_cmd("batsignal -w 20 -c 10 -d 5")
+    hl.exec_dmd("udiskie")
     hl.exec_cmd("v2rayn")
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
@@ -74,7 +75,7 @@ hl.on("hyprland.start", function()
     -- Обои и панель
     hl.exec_cmd("swaybg -i ~/wallpaper.jpg -m fill")
     hl.exec_cmd("waybar")
-
+    
     -- Обновления
     hl.exec_cmd("arch-update --tray")
 end)
