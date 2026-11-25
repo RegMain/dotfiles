@@ -50,4 +50,3 @@ mkcd() {
 alias ff='firefox'
 alias neofetch='fastfetch'
 alias poweruse='upower -i /org/freedesktop/UPower/devices/battery_LBAT | grep "energy-rate"'
-alias bsd-games='echo "adventure, arithmetic, atc, battlestar, caesar, cribbage, dab, drop4, gofish, gomoku, hangman, klondike, robots, sail, snake, spirhunt, worm, wump"'

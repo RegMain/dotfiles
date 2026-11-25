@@ -66,7 +66,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("nm-applet --indicator")
     hl.exec_cmd("batsignal -w 20 -c 10 -d 5")
-    hl.exec_dmd("udiskie")
+    -- hl.exec_dmd("udiskie")
     hl.exec_cmd("v2rayn")
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
@@ -102,7 +102,7 @@ hl.window_rule({
     float = true,
     center = true,
     size = { 1024, 768 },
-    suppress_event = "maximize"
+    --suppress_event = "maximize"
 })
 
 hl.window_rule({
