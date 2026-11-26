@@ -1,0 +1,10 @@
+[Unit]
+Description=Quickshell bar
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/qs -p /home/alcp/dotfiles/quickshell/.config/quickshell/minimal-bar
+Restart=on-failure
+RestartSec=2

@@ -5,8 +5,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-autoload -Uz compinit
-compinit
 zstyle ':completion:*' menu select
 
 
@@ -15,13 +13,22 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git alias-finder colored-man-pages command-not-found extract wd)
 
 source $ZSH/oh-my-zsh.sh
+
+# Keep Oh My Zsh's existing shared-history behavior, but omit consecutive
+# duplicates and commands deliberately prefixed with a space.
+setopt hist_ignore_dups hist_ignore_space
+
+if [[ -o zle ]] && (( $+commands[fzf] )) && [[ -r /usr/share/fzf/key-bindings.zsh ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+fi
+
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 typeset -gA ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=white'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=white'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=white'
 ZSH_HIGHLIGHT_STYLES[function]='fg=white'
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export EDITOR='micro'
 export VISUAL='micro'

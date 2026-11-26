@@ -1,0 +1,61 @@
+/* Small, reversible adjustments on top of Fusion. */
+QPushButton, QToolButton, QLineEdit, QComboBox,
+QAbstractSpinBox, QMenu, QMenuBar, QScrollBar, QFrame {
+    border-radius: 0px;
+}
+
+QLineEdit:focus, QComboBox:focus, QAbstractSpinBox:focus {
+    border: 1px solid #6d73ca;
+}
+
+QMenu::item:selected, QMenuBar::item:selected {
+    background-color: #6d73ca;
+    color: #f0f0f2;
+}
+
+QToolBar QToolButton {
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+QToolBar QToolButton:checked, QToolBar QToolButton:pressed {
+    background-color: #2d2d2d;
+    border: 1px solid transparent;
+    border-bottom: 2px solid #6d73ca;
+}
+
+QToolBar QToolButton:hover:!checked {
+    background-color: #2d2d2d;
+}
+
+/* MenuButtonPopup needs space reserved separately from the arrow subcontrol. */
+QToolBar QToolButton[popupMode="1"] {
+    padding-right: 20px;
+}
+
+QToolBar QToolButton::menu-button {
+    border: 0;
+    border-left: 1px solid #55555f;
+    border-radius: 0;
+    width: 16px;
+}
+
+QTabBar::tab {
+    background-color: #252525;
+    color: #a2a3ad;
+    border: 1px solid #44444e;
+    border-radius: 0px;
+    padding: 5px 10px;
+}
+
+QTabBar::tab:selected {
+    background-color: #2d2d2d;
+    color: #f0f0f2;
+    border-bottom: 2px solid #6d73ca;
+}
+
+QTabBar::tab:hover:!selected {
+    background-color: #343434;
+    color: #f0f0f2;
+}

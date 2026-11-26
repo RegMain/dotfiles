@@ -1,0 +1,31 @@
+/* Keep the stock dmenu layout, matching the Quickshell palette. */
+@import "/usr/share/rofi/themes/dmenu.rasi"
+
+* {
+    background-color: #161616;
+    border-color: #ffffff;
+    text-color: #f0f0f2;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+window {
+    border: 1px;
+    border-radius: 0px;
+    padding: 8px;
+}
+
+prompt {
+    padding: 0px 10px 0px 0px;
+    margin: 0px 10px 0px 0px;
+    border: 0px 1px 0px 0px;
+    border-color: #a2a3ad;
+}
+
+element {
+    padding: 4px 6px;
+}
+
+element selected {
+    background-color: #6d73ca;
+    text-color: #f0f0f2;
+}

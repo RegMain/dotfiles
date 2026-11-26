@@ -1,0 +1,70 @@
+/* Accents shared with the Quickshell bar; keep Adwaita's dark base. */
+@define-color theme_selected_bg_color #6d73ca;
+@define-color theme_selected_fg_color #f0f0f2;
+@define-color theme_unfocused_selected_bg_color #555a9d;
+@define-color theme_unfocused_selected_fg_color #f0f0f2;
+
+selection,
+*:selected,
+*:selected:focus {
+    background-color: #6d73ca;
+    color: #f0f0f2;
+}
+
+switch:checked {
+    background-image: none;
+    background-color: #6d73ca;
+    border-color: #6d73ca;
+}
+
+menu menuitem:hover,
+menu menuitem:active,
+menubar > menuitem:hover,
+menubar > menuitem:active,
+popover modelbutton:hover,
+popover modelbutton:active {
+    background-image: none;
+    background-color: #6d73ca;
+    color: #f0f0f2;
+}
+
+separator {
+    background-color: #65656e;
+    min-width: 1px;
+    min-height: 1px;
+}
+
+button:disabled,
+menuitem:disabled,
+modelbutton:disabled,
+label:disabled,
+image:disabled {
+    color: #92929b;
+}
+
+entry,
+button,
+switch,
+scrollbar trough {
+    border-color: #666670;
+}
+
+button,
+entry,
+switch,
+switch slider,
+popover,
+menu,
+menuitem,
+modelbutton,
+scrollbar slider,
+scrollbar trough,
+check,
+radio,
+scale trough,
+scale highlight,
+scale slider,
+progressbar trough,
+progressbar progress {
+    border-radius: 0;
+}

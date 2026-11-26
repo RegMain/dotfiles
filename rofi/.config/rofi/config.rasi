@@ -168,4 +168,4 @@ configuration {
   display-find: "find";
 }
 
-@theme "/usr/share/rofi/themes/dmenu.rasi"
+@theme "~/.config/rofi/minimal-dmenu.rasi"

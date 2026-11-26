@@ -29,6 +29,7 @@ hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 
 debug.disable_logs = false
 
@@ -62,7 +63,7 @@ hl.config({
 hl.on("hyprland.start", function()
     hl.exec_cmd("xrdb -merge ~/.Xresources")
     hl.exec_cmd("wlsunset -l 55.7 -long 37.6")
-    hl.exec_cmd("mako")
+    hl.exec_cmd("systemctl --user start quickshell-notifications.service")
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("nm-applet --indicator")
     hl.exec_cmd("batsignal -w 20 -c 10 -d 5")
@@ -74,7 +75,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
     -- Обои и панель
     hl.exec_cmd("swaybg -i ~/wallpaper.jpg -m fill")
-    hl.exec_cmd("waybar")
+    hl.exec_cmd("systemctl --user start quickshell-bar.service")
     
     -- Обновления
     hl.exec_cmd("arch-update --tray")
@@ -124,8 +125,8 @@ hl.bind(mod .. " + code:26", hl.dsp.exec_cmd(filemgr))
 hl.bind(mod .. " + code:24", hl.dsp.window.close())
 hl.bind(mod .. " + code:39", hl.dsp.exec_cmd(menu))
 hl.bind(mod .. " + CTRL + code:26", hl.dsp.exec_cmd("swaynag -t warning -m 'Exit Hyprland?' -B 'Yes' 'hyprctl dispatch exit'"))
-hl.bind(mod .. " + code:54", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy"))
-hl.bind(mod .. " + ESCAPE", hl.dsp.exec_cmd("wlogout"))
+hl.bind(mod .. " + code:54", hl.dsp.exec_cmd("python3 ~/dotfiles/rofi/.config/rofi/clipboard-menu.py"))
+hl.bind(mod .. " + ESCAPE", hl.dsp.exec_cmd("wlogout -b 3 -C ~/dotfiles/hypr/.config/hypr/wlogout.css"))
 hl.bind(mod .. " + SHIFT + code:46", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend"), { locked = true })
 -- Навигация фокуса и перемещение окон

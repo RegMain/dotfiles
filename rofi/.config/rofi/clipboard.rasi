@@ -1,0 +1,40 @@
+@import "~/.config/rofi/minimal-dmenu.rasi"
+
+window {
+    anchor: center;
+    location: center;
+    width: 680px;
+    children: [ mainbox ];
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 8px;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+}
+
+entry {
+    expand: true;
+}
+
+listview {
+    layout: vertical;
+    lines: 8;
+    spacing: 3px;
+}
+
+element {
+    padding: 6px;
+    spacing: 10px;
+}
+
+element-icon {
+    size: 64px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
